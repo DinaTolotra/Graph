@@ -29,9 +29,36 @@ void Graph::setEdge(int src, int dst, int weight) {
     m.at(dst, src) = weight;
 }
 
-void Graph::setUndirectedEdge(int a, int b, int weight) {
-    m.at(a, b) = weight;
-    m.at(b, a) = weight;
+void Graph::removeEdge(int src, int dst) {
+    m.at(dst, src) = 0;
+}
+
+v<int> Graph::getAdjacentNode(int node) const {
+    v<int> adjNode;
+
+    for (int i=0; i < m.getWidth(); i++) {
+        if (i == node)
+            continue;
+        
+        if (m.at(i, node))
+            adjNode.push_back(i);
+    }
+
+    return adjNode;
+}
+
+v<int> Graph::getNonAdjacentNode(int node) const {
+    v<int> nonAdjNode;
+
+    for (int i=0; i<m.getWidth(); i++) {
+        if (i == node)
+            continue;
+        
+        if (!m.at(i, node))
+            nonAdjNode.push_back(i);
+    }
+
+    return nonAdjNode;
 }
 
 void Graph::print() {

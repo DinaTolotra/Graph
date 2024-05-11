@@ -34,5 +34,8 @@ public:
     int at(int x, int y) const;
     int& at(int x, int y);
 
+    int getWidth() const;
+    int getHeight() const;
+
     void print();
 };

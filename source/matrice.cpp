@@ -127,6 +127,14 @@ int &Matrice::at(int x, int y) {
     return matrice[y][x];
 }
 
+int Matrice::getWidth() const {
+    return w;
+}
+
+int Matrice::getHeight() const {
+    return h;
+}
+
 void Matrice::print() {
     for (v<int> &row: matrice) {
         for (int elem: row)

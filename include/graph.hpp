@@ -18,8 +18,11 @@ public:
 
     Graph operator=(const Graph &other);
 
-    void setEdge(int src, int dst, int weight = 1);
-    void setUndirectedEdge(int a, int b, int weight = 1);
+    void setEdge(int src, int dst, int weight=1);
+    void removeEdge(int src, int dst);
+
+    v<int> getAdjacentNode(int node) const;
+    v<int> getNonAdjacentNode(int node) const;
 
     void print();
 };

@@ -12,5 +12,14 @@ private:
     
 public:
     Graph();
+    Graph(int nCount);
+    Graph(const Graph &other);
     ~Graph();
+
+    Graph operator=(const Graph &other);
+
+    void setEdge(int src, int dst, int weight = 1);
+    void setUndirectedEdge(int a, int b, int weight = 1);
+
+    void print();
 };

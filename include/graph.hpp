@@ -9,6 +9,7 @@
 class Graph {
 private:
     Matrice m;
+    int nodeCount;
     
 public:
     Graph();
@@ -23,6 +24,9 @@ public:
 
     v<int> getAdjacentNode(int node) const;
     v<int> getNonAdjacentNode(int node) const;
+
+    v<int> getNextNode(int node) const;
+    v<int> getPreviousnode(int node) const;
 
     void print();
 };

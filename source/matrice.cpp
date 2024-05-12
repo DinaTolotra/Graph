@@ -111,6 +111,28 @@ void Matrice::removeRow(int count) {
     matrice.resize(h);
 }
 
+v<int> Matrice::getCol(int index) const {
+    if (index < 0 || index >= w)
+        throw std::out_of_range("invalid index");
+
+    v<int> result;
+
+    for (v<int> row: matrice) 
+        result.push_back(row[index]);
+    
+    return result;
+}
+
+v<int> Matrice::getRow(int index) const {
+    if (index < 0 || index >= h)
+        throw std::out_of_range("invalid index");
+    
+    v<int> result;
+    result = matrice[index];
+
+    return result;
+}
+
 void Matrice::fill(int value) {
     for (auto &row: matrice) {
         for (auto &elem: row) {

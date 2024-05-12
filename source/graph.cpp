@@ -1,11 +1,13 @@
 #include "graph.hpp"
 
 Graph::Graph():
-    m(0)
+    m(0),
+    nodeCount(0)
 {}
 
 Graph::Graph(int nCount):
-    m(nCount)
+    m(nCount),
+    nodeCount(nCount)
 {
     m.fill(0);
 }
@@ -21,26 +23,44 @@ Graph Graph::operator=(const Graph &other) {
         return *this;
 
     this->m = other.m;
+    this->nodeCount = other.nodeCount;
 
     return *this;
 }
 
 void Graph::setEdge(int src, int dst, int weight) {
+    if (src < 0 || src >= nodeCount) 
+        throw std::out_of_range("invalid index");
+    
+    if (dst < 0 || dst >= nodeCount) 
+        throw std::out_of_range("invalid index");
+
     m.at(dst, src) = weight;
 }
 
 void Graph::removeEdge(int src, int dst) {
+    if (src < 0 || src >= nodeCount) 
+        throw std::out_of_range("invalid index");
+    
+    if (dst < 0 || dst >= nodeCount) 
+        throw std::out_of_range("invalid index");
+
     m.at(dst, src) = 0;
 }
 
 v<int> Graph::getAdjacentNode(int node) const {
-    v<int> adjNode;
+    if (node < 0 || node >= nodeCount) 
+        throw std::out_of_range("invalid index");
 
-    for (int i=0; i < m.getWidth(); i++) {
+    v<int> adjNode;
+    v<int> nextNode = getNextNode(node);
+    v<int> previousNode = getPreviousnode(node);
+
+    for (int i=0; i < nodeCount; i++) {
         if (i == node)
             continue;
         
-        if (m.at(i, node))
+        if (nextNode.at(i) || previousNode.at(i))
             adjNode.push_back(i);
     }
 
@@ -48,17 +68,56 @@ v<int> Graph::getAdjacentNode(int node) const {
 }
 
 v<int> Graph::getNonAdjacentNode(int node) const {
-    v<int> nonAdjNode;
+    if (node < 0 || node >= nodeCount) 
+        throw std::out_of_range("invalid index");
 
-    for (int i=0; i<m.getWidth(); i++) {
+    v<int> nonAdjNode;
+    v<int> nextNode = getNextNode(node);
+    v<int> previousNode = getPreviousnode(node);
+
+    for (int i=0; i<nodeCount; i++) {
         if (i == node)
             continue;
         
-        if (!m.at(i, node))
+        if (!nextNode.at(i) && !previousNode.at(i))
             nonAdjNode.push_back(i);
     }
 
     return nonAdjNode;
+}
+
+v<int> Graph::getNextNode(int node) const {
+    if (node < 0 || node >= nodeCount) 
+        throw std::out_of_range("invalid index");
+    
+    v<int> nextNode;
+
+    for (int i=0; i<nodeCount; i++) {
+        if (i == node)
+            continue;
+        
+        if (m.at(i, node))
+            nextNode.push_back(i);
+    }
+
+    return nextNode;
+}
+
+v<int> Graph::getPreviousnode(int node) const {
+    if (node < 0 || node >= nodeCount) 
+        throw std::out_of_range("invalid index");
+    
+    v<int> previousNode;
+
+    for (int i=0; i<nodeCount; i++) {
+        if (i == node)
+            continue;
+        
+        if (m.at(node, i))
+            previousNode.push_back(i);
+    }
+
+    return previousNode;
 }
 
 void Graph::print() {

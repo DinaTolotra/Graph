@@ -9,8 +9,13 @@ using namespace std;
 void DFS(const Graph &g, int node, set<int> &visited);
 
 int main(int argc, char const *argv[]) {
-    int edgeCount, verticeCount;
-    cin >> verticeCount >> edgeCount;
+    int edgeCount;
+    int startingNode;
+    int verticeCount;
+
+    cin >> verticeCount
+        >> startingNode
+        >> edgeCount;
 
     Graph g(verticeCount);
 
@@ -21,7 +26,7 @@ int main(int argc, char const *argv[]) {
     }
 
     set<int> s;
-    DFS(g, 0, s);
+    DFS(g, startingNode, s);
 
     return 0;
 }
@@ -30,7 +35,7 @@ void DFS(const Graph &g, int node, set<int> &visited) {
     visited.insert(node);
     cout << node <<  endl;
 
-    for (int i: g.getAdjacentNode(node)) {
+    for (int i: g.getNextNode(node)) {
         if (visited.find(i) != visited.end())
             continue;
         

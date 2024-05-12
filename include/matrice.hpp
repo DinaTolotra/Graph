@@ -30,6 +30,9 @@ public:
     void removeCol(int count);
     void removeRow(int count);
 
+    v<int> getCol(int index) const;
+    v<int> getRow(int index) const;
+
     void fill(int value);
     int at(int x, int y) const;
     int& at(int x, int y);

@@ -22,11 +22,11 @@ public:
     void setEdge(int src, int dst, int weight=1);
     void removeEdge(int src, int dst);
 
-    v<int> getAdjacentNode(int node) const;
-    v<int> getNonAdjacentNode(int node) const;
+    vector<int> getAdjacentNode(int node) const;
+    vector<int> getNonAdjacentNode(int node) const;
 
-    v<int> getNextNode(int node) const;
-    v<int> getPreviousnode(int node) const;
+    vector<int> getNextNode(int node) const;
+    vector<int> getPreviousnode(int node) const;
 
     void print();
 };

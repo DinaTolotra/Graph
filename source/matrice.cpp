@@ -5,12 +5,12 @@ Matrice::Matrice() {
 }
 
 Matrice::Matrice(int side) {
-    matrice.resize(side, v<int>(side, 0));
+    matrice.resize(side, vector<int>(side, 0));
     this->w = this->h = side;
 }
 
 Matrice::Matrice(int w, int h) {
-    matrice.resize(h, v<int>(w, 0));
+    matrice.resize(h, vector<int>(w, 0));
     this->w = w;
     this->h = h;
 }
@@ -81,7 +81,7 @@ void Matrice::insertCol(int count) {
         return;
 
     w += count;
-    for (v<int> row: matrice)
+    for (vector<int> row: matrice)
         row.resize(w, 0);
 
 }
@@ -91,7 +91,7 @@ void Matrice::insertRow(int count) {
         return;
     
     h += count;
-    matrice.resize(h, v<int>(w, 0));
+    matrice.resize(h, vector<int>(w, 0));
 }
 
 void Matrice::removeCol(int count) {
@@ -99,7 +99,7 @@ void Matrice::removeCol(int count) {
         return;
 
     w -= count;
-    for (v<int> row: matrice)
+    for (vector<int> row: matrice)
         row.resize(w);
 }
 
@@ -111,23 +111,23 @@ void Matrice::removeRow(int count) {
     matrice.resize(h);
 }
 
-v<int> Matrice::getCol(int index) const {
+vector<int> Matrice::getCol(int index) const {
     if (index < 0 || index >= w)
         throw std::out_of_range("invalid index");
 
-    v<int> result;
+    vector<int> result;
 
-    for (v<int> row: matrice) 
+    for (vector<int> row: matrice) 
         result.push_back(row[index]);
     
     return result;
 }
 
-v<int> Matrice::getRow(int index) const {
+vector<int> Matrice::getRow(int index) const {
     if (index < 0 || index >= h)
         throw std::out_of_range("invalid index");
     
-    v<int> result;
+    vector<int> result;
     result = matrice[index];
 
     return result;
@@ -158,7 +158,7 @@ int Matrice::getHeight() const {
 }
 
 void Matrice::print() {
-    for (v<int> &row: matrice) {
+    for (vector<int> &row: matrice) {
         for (int elem: row)
             std::cout << elem << ' ';
         std::cout << '\n';

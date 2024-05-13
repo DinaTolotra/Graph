@@ -3,14 +3,13 @@
 #include <iostream>
 #include <vector>
 #include <stdexcept>
-#define v vector
 
 using std::vector;
 
 
 class Matrice {
 private:
-    v<v<int>> matrice;
+    vector<vector<int>> matrice;
     int w, h;
 
 public:
@@ -30,8 +29,8 @@ public:
     void removeCol(int count);
     void removeRow(int count);
 
-    v<int> getCol(int index) const;
-    v<int> getRow(int index) const;
+    vector<int> getCol(int index) const;
+    vector<int> getRow(int index) const;
 
     void fill(int value);
     int at(int x, int y) const;

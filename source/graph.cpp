@@ -48,13 +48,13 @@ void Graph::removeEdge(int src, int dst) {
     m.at(dst, src) = 0;
 }
 
-v<int> Graph::getAdjacentNode(int node) const {
+vector<int> Graph::getAdjacentNode(int node) const {
     if (node < 0 || node >= nodeCount) 
         throw std::out_of_range("invalid index");
 
-    v<int> adjNode;
-    v<int> nextNode = getNextNode(node);
-    v<int> previousNode = getPreviousnode(node);
+    vector<int> adjNode;
+    vector<int> nextNode = getNextNode(node);
+    vector<int> previousNode = getPreviousnode(node);
 
     for (int i=0; i < nodeCount; i++) {
         if (i == node)
@@ -67,13 +67,13 @@ v<int> Graph::getAdjacentNode(int node) const {
     return adjNode;
 }
 
-v<int> Graph::getNonAdjacentNode(int node) const {
+vector<int> Graph::getNonAdjacentNode(int node) const {
     if (node < 0 || node >= nodeCount) 
         throw std::out_of_range("invalid index");
 
-    v<int> nonAdjNode;
-    v<int> nextNode = getNextNode(node);
-    v<int> previousNode = getPreviousnode(node);
+    vector<int> nonAdjNode;
+    vector<int> nextNode = getNextNode(node);
+    vector<int> previousNode = getPreviousnode(node);
 
     for (int i=0; i<nodeCount; i++) {
         if (i == node)
@@ -86,11 +86,11 @@ v<int> Graph::getNonAdjacentNode(int node) const {
     return nonAdjNode;
 }
 
-v<int> Graph::getNextNode(int node) const {
+vector<int> Graph::getNextNode(int node) const {
     if (node < 0 || node >= nodeCount) 
         throw std::out_of_range("invalid index");
     
-    v<int> nextNode;
+    vector<int> nextNode;
 
     for (int i=0; i<nodeCount; i++) {
         if (i == node)
@@ -103,11 +103,11 @@ v<int> Graph::getNextNode(int node) const {
     return nextNode;
 }
 
-v<int> Graph::getPreviousnode(int node) const {
+vector<int> Graph::getPreviousnode(int node) const {
     if (node < 0 || node >= nodeCount) 
         throw std::out_of_range("invalid index");
     
-    v<int> previousNode;
+    vector<int> previousNode;
 
     for (int i=0; i<nodeCount; i++) {
         if (i == node)

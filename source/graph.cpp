@@ -120,6 +120,14 @@ vector<int> Graph::getPreviousnode(int node) const {
     return previousNode;
 }
 
+int Graph::getWeight(int src, int dst) {
+    return m.at(dst, src);
+}
+
+int Graph::getNodeCount() {
+    return nodeCount;
+}
+
 void Graph::print() {
     m.print();
 }

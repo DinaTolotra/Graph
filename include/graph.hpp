@@ -28,5 +28,8 @@ public:
     vector<int> getNextNode(int node) const;
     vector<int> getPreviousnode(int node) const;
 
+    int getWeight(int src, int dst);
+    int getNodeCount();
+
     void print();
 };
